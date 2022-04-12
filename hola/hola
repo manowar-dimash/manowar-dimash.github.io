@@ -1,0 +1,129 @@
+<?php
+headerTienda($data);
+getModal('modalCarrito',$data);
+$arrProducto = $data['producto'];
+$arrProductos = $data['productos'];
+$arrImages = $arrProducto['images'];
+$rutacategoria = $arrProducto['categoriaid'].'/'.$arrProducto['ruta_categoria'];
+?>
+<br><br><br>
+<hr>
+<div class="contenedor50">
+    <div class="container">
+        <div class="container-contenido">
+            <a href="<?= base_url(); ?>">
+                Inicio                
+            </a>
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+            <a href="<?= base_url().'/tienda/categoria/'.$rutacategoria; ?>">
+                <?= $arrProducto['categoria'] ?>                
+            </a>
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+            <span>
+                <?= $arrProducto['nombre'] ?>
+            </span>
+        </div>
+    </div>
+
+    <section class="seccion">
+        <div class="container10">
+            <div class="contenido50">
+                <div class="filas">
+                    <div class="contenedor-imagenes">
+                        <div class="contenido-imagenes">
+                            <div class="contenido-imagenes1"></div>
+                            <div class="contenido-imagenes2"></div>
+
+                            <div class="contenedor-imagen-grande">
+                                <?php
+                                if (!empty($arrImages)) {
+                                    for ($img = 0; $img < count($arrImages); $img++) {
+
+                                ?>
+                                        <div class="item-imagenes" data-thumb="<?= $arrImages[$img]['url_image']; ?>">
+                                            <div class="foto">
+                                                <img src="<?= $arrImages[$img]['url_image']; ?>" alt="">
+
+                                                </a>
+                                            </div>
+                                        </div>
+                                <?php
+                                    }
+                                }
+                                ?>
+                                <ul class="slides" style="width: 1000%; transition-duration: 0s; transform: translate3d(-350px, 0px, 0px);">
+                                    <li data-thumb="images/d3.jpg" class="clone" style="width: 350px; float: left; display: block;">
+                                        <div class="thumb-image"> <img src="images/d3.jpg" data-imagezoom="true" class="img-fluid" alt=" "> </div>
+                                    </li>
+                                    <li data-thumb="images/d2.jpg" class="flex-active-slide" style="width: 350px; float: left; display: block;">
+                                        <div class="thumb-image"> <img src="images/d2.jpg" data-imagezoom="true" class="img-fluid" alt=" "> </div>
+                                    </li>
+                                    <li data-thumb="images/d1.jpg" style="width: 350px; float: left; display: block;" class="">
+                                        <div class="thumb-image"> <img src="images/d1.jpg" data-imagezoom="true" class="img-fluid" alt=" "> </div>
+                                    </li>
+                                    <li data-thumb="images/d3.jpg" style="width: 350px; float: left; display: block;" class="">
+                                        <div class="thumb-image"> <img src="images/d3.jpg" data-imagezoom="true" class="img-fluid" alt=" "> </div>
+                                    </li>
+                                    <li data-thumb="images/d2.jpg" class="clone" style="width: 350px; float: left; display: block;">
+                                        <div class="thumb-image"> <img src="images/d2.jpg" data-imagezoom="true" class="img-fluid" alt=" "> </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="fotos-pequeñas">
+                            <?php
+                                if (!empty($arrImages)) {
+                                    for ($img = 0; $img < count($arrImages); $img++) {
+
+                                ?>
+                                
+                                <ul class="imagenes-pequeñas imagenes-pequeñas-link">
+                                    <li><img src="<?= $arrImages[$img]['url_image']; ?>" class="flex-active"></li>
+                                
+                                </ul>
+                                
+                            <?php
+                                    }
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filas1">
+                    <div class="contenedor-detalles">
+                        <h4 >
+                            <?= $arrProducto['nombre']; ?>
+                        </h4>
+                        <span>
+                            <?= SMONEY . formatMoney($arrProducto['precio']); ?>
+                        </span>
+                         
+                        <?= $arrProducto['descripcion']; ?>
+                        
+                        <div class="carro">
+                            <div class="contenedor-carro">
+                                <div class="contenido-carro">
+                                    <input  type="number" name="num-product" value="1">                                    
+                                </div>
+                                <button class="btn-carrito" type="button">
+                                    Agregar al carrito
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+
+
+
+<?php
+footerTienda($data);
+?>
